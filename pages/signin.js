@@ -1,8 +1,42 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { signIn } from "next-auth/react"
+import { useState } from "react";
+import { useRouter } from "next/router";
 
-export default function Home() {
+
+export default function Home({ providers }) {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  const handleSignIn = async () => {
+    await signIn('google');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Call the login API with username and password
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + 'auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      console.log('Login successful');
+      router.push('/payment');
+    } else {
+      console.log('Login failed');
+    }
+  };
+
+
   return (
     <div>
       <Head>
@@ -18,10 +52,8 @@ export default function Home() {
         >
           <header style={{ backgroundColor: "#F7F9FF" }}>
             <div className="header p-2" style={{ backgroundColor: "#F7F9FF" }}>
-              {/* <nav
-                className="navbar bg-body-tertiary"
-                style={{ backgroundColor: "#F7F9FF" }}
-              >
+
+              <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                   <a className="navbar-brand" href="#">
                     <img
@@ -29,7 +61,7 @@ export default function Home() {
                       alt="Logo"
                       width="72%"
                       height="auto"
-                      class="d-inline-block align-text-top"
+                      className="d-inline-block align-text-top"
                     />
                   </a>
 
@@ -43,36 +75,7 @@ export default function Home() {
                         alt="Logo"
                         width="72%"
                         height="auto"
-                        class="d-inline-block align-text-top"
-                      />
-                      <p>John Doe</p>
-                    </div>
-                  </div>
-                </div>
-              </nav> */}
-              <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                  <a className="navbar-brand" href="#">
-                    <img
-                      src="/designerr-logo.png"
-                      alt="Logo"
-                      width="72%"
-                      height="auto"
-                      class="d-inline-block align-text-top"
-                    />
-                  </a>
-
-                  <div
-                    className="collapse navbar-collapse d-flex justify-content-end"
-                    id="navbarSupportedContent"
-                  >
-                    <div className="d-flex justify-content-end">
-                      <img
-                        src="/user-img1.png"
-                        alt="Logo"
-                        width="72%"
-                        height="auto"
-                        class="d-inline-block align-text-top"
+                        className="d-inline-block align-text-top"
                       />
                       <p style={{ fontSize: 16 }}>John Doe</p>
                     </div>
@@ -86,101 +89,97 @@ export default function Home() {
             style={{ backgroundColor: "#FFF" }}
           >
             <div
-              className="card shadow p-3 mb-5 bg-body-tertiary rounded"
+              className="card shadow p-3 mb-5 rounded"
               style={{ maxWidth: 730, backgroundColor: "#FFF" }}
             >
-              <div className="card-body">
-                <h5 className="card-title text-center text-uppercase fw-bold">
-                  Sign In
-                </h5>
+              <form onSubmit={handleSubmit}>
+                <div className="card-body">
+                  <h2 className="card-title text-center text-uppercase fw-bold">
+                    Sign In
+                  </h2>
 
-                <div className="mb-3">
-                  <label
-                    for="exampleFormControlInput1"
-                    className="form-label fw-bold"
+                  <div className="mb-3">
+                    <label
+                      htmlFor="exampleFormControlInput1"
+                      className="form-label fw-bold"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="exampleFormControlInput1"
+                      placeholder="Enter your email"
+                      width="100%"
+                      height="85%"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label
+                      htmlFor="exampleFormControlInput1"
+                      className="form-label fw-bold"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="exampleFormControlInput1"
+                      placeholder="Enter your email password"
+                      width="100%"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn btn-primary text-uppercase w-100 mb-4 mt-3 fw-bold"
                   >
-                    Name
-                  </label>
-                  <input
-                    type="name"
-                    className="form-control p-3"
-                    id="exampleFormControlInput1"
-                    placeholder="Enter your username"
-                    width="100%"
-                    height="85%"
-                  />
-                </div>
+                    Sign in with Email
+                  </button>
 
-                <div className="mb-3">
-                  <label
-                    for="exampleFormControlInput1"
-                    className="form-label fw-bold"
+
+                  <button
+                    type="button"
+                    className="btn btn-outline-dark w-100 mb-4 fw-bold"
+                    width="100%"
+                    onClick={handleSignIn}
                   >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control p-3"
-                    id="exampleFormControlInput1"
-                    placeholder="Enter your email address"
+                    <span>
+                      <img
+                        className="img-thumbnail bg-transparent border-0"
+                        src="/Google logo.svg"
+                      ></img>
+                    </span>
+                    Sign in with Google
+                  </button>
+
+
+                  <button
+                    type="button"
+                    className="btn btn-outline-dark w-100 mb-4 fw-bold"
                     width="100%"
-                  />
-                </div>
-                <div className="mb-4">
-                  <div className="row d-flex p-2 ">
-                    <button
-                      type="button"
-                      className="btn btn-primary text-uppercase"
-                      width="100%"
-                    >
-                      Sign in with Email
-                    </button>
+                  >
+                    <span>
+                      <img
+                        className="img-thumbnail bg-transparent border-0"
+                        src="/fb-logo.svg"
+                      ></img>
+                    </span>
+                    Sign in with Facebook
+                  </button>
+
+
+                  <div className="mb-3">
+                    <p className="text-center">
+                      By continuing your agree to our privacy policy and terms and
+                      conditions.
+                    </p>
                   </div>
                 </div>
-
-                <div className="mb-2">
-                  <div className="row d-flex  p-2">
-                    <button
-                      type="button"
-                      className="btn btn-outline-dark "
-                      width="100%"
-                    >
-                      <span>
-                        <img
-                          className="img-thumbnail bg-transparent border-0"
-                          src="/Google logo.svg"
-                        ></img>
-                      </span>
-                      Sign in with Google
-                    </button>
-                  </div>
-                </div>
-
-                <div className="mb-3">
-                  <div className="row d-flex p-2 ">
-                    <button
-                      type="button"
-                      className="btn btn-outline-dark "
-                      width="100%"
-                    >
-                      <span>
-                        <img
-                          className="img-thumbnail bg-transparent border-0"
-                          src="/fb-logo.svg"
-                        ></img>
-                      </span>
-                      Sign in with Facebook
-                    </button>
-                  </div>
-                </div>
-
-                <div className="mb-3">
-                  <p className="text-center">
-                    By continuing your agree to our privacy policy and terms and
-                    conditions.
-                  </p>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -188,3 +187,5 @@ export default function Home() {
     </div>
   );
 }
+
+

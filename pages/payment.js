@@ -22,7 +22,7 @@ export default function Payment() {
                     alt="Logo"
                     width="72%"
                     height="auto"
-                    class="d-inline-block align-text-top"
+                    className="d-inline-block align-text-top"
                   />
                 </a>
               </div>
@@ -30,7 +30,7 @@ export default function Payment() {
           </div>
         </header>
         <div className="row">
-          <h1 className="text-center text-primary text-uppercase">
+          <h1 className="text-center text-primary text-uppercase fw-bold mb-5">
             Enter Your Payment Details Below
           </h1>
         </div>
