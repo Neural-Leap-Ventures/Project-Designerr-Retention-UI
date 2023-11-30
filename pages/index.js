@@ -16,7 +16,7 @@ const Index = () => {
     const newChatClk = () => {
         clearChat()
         router.push({
-            pathname: '/chat2'
+            pathname: '/'
         });
     }
 
@@ -238,7 +238,7 @@ const Index = () => {
     const getOldChat = async (chatkey) => {
         clearChat()
         router.push({
-            pathname: '/chat2',
+            pathname: '/',
             query: { chatkey: chatkey }
         });
         
