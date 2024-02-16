@@ -1,21 +1,48 @@
 {
-  "name": "designer-ui",
+  "name": "project-plume",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "export": "npm run build && next export",
     "lint": "next lint"
   },
   "dependencies": {
-    "bootstrap": "^5.3.0",
-    "next": "13.4.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@babel/core": "^7.15.5",
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^1.6.7",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "facebook-nodejs-business-sdk": "^19.0.0",
+    "framer-motion": "^5.3.0",
+    "frontmatter-markdown-loader": "^3.6.3",
+    "fs": "^0.0.1-security",
+    "grey-matter": "^0.0.0",
+    "marked": "^12.0.0",
+    "netlify-cms": "^2.8.0",
+    "netlify-cms-app": "^2.15.46",
+    "netlify-identity-widget": "^1.9.2",
+    "netlify-lambda": "^2.0.15",
+    "next": "^14.1.0",
+    "next-auth": "^4.24.5",
+    "next-session": "^4.0.4",
+    "path": "^0.12.7",
+    "prettier": "^2.4.1",
+    "react": "^18.2.0",
+    "react-calendly": "^2.2.2",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^8.32.2",
+    "react-use": "^17.3.1",
+    "request": "^2.88.2",
+    "request-ip": "^3.3.0",
+    "serverless-http": "^2.7.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
-    "eslint": "8.41.0",
-    "eslint-config-next": "13.4.4"
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2"
   }
 }
