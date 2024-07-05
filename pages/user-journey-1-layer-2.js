@@ -93,9 +93,7 @@ const UserJourney1Layer2 = ({ data }) => {
           </div>
         </section>
 
-        <Script src="https://code.jquery.com/jquery-3.6.0.min.js" strategy="beforeInteractive" />
-        <Script src="/js/webflow.js" strategy='afterInteractive' />
-        <Script src="/js/script.js" strategy='afterInteractive' />
+        
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import logout from '../utils/logout';
 
 export default function SideNav() {
   const router = useRouter();
@@ -13,20 +14,20 @@ export default function SideNav() {
       </div>
       <div className="left-menu-wrapper">
         <div className="left-menu-list">
-          <a href="/user-journey-3-layer-2" className={`left-menu-link w-inline-block ${router.pathname === '/user-journey-3-layer-2' ? 'active' : ''}`} passHref>
+          <Link href="/dashboard" className={`left-menu-link w-inline-block ${router.pathname === '/dashboard' ? 'active' : ''}`} passhref>
             <img src="images/home-ico.svg" loading="lazy" alt="" className="left-link-icon" />
             <div>Home</div>
-          </a>
-          <a href="/user-journey-3-layer-3" className={`left-menu-link w-inline-block ${router.pathname === '/user-journey-3-layer-3' || router.pathname === '/user-journey-3-layer-4' || router.pathname === '/user-journey-3-layer-5' ? 'active' : ''}`} passHref>
+          </Link>
+          <Link href="/user-journey-3-layer-3" className={`left-menu-link w-inline-block ${router.pathname === '/user-journey-3-layer-3' || router.pathname === '/user-journey-3-layer-4' || router.pathname === '/user-journey-3-layer-5' ? 'active' : ''}`} passhref>
             <img src="images/setting-ico.svg" loading="lazy" alt="" className="left-link-icon" />
             <div>Settings</div>
-          </a>
-          <a href="" className={`left-menu-link w-inline-block ${router.pathname === '/notification' ? 'active' : ''}`} passHref>
+          </Link>
+          <Link href="" className={`left-menu-link w-inline-block ${router.pathname === '/notification' ? 'active' : ''}`} passhref>
             <img src="images/setting-ico.svg" loading="lazy" alt="" className="left-link-icon" />
             <div>Notification</div>
-          </a>
+          </Link>
         </div>
-        <a href="#" className="left-menu-link w-inline-block"><img src="images/logout-ico.svg" loading="lazy" alt="" className="left-link-icon" />
+        <a href='#' onClick={logout} className="left-menu-link w-inline-block"><img src="images/logout-ico.svg" loading="lazy" alt="" className="left-link-icon" />
           <div>Log out</div>
         </a>
       </div>

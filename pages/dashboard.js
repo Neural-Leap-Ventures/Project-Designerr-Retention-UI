@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Script from 'next/script';
 import fs from "fs";
 import matter from "gray-matter";
@@ -6,6 +7,7 @@ import React, { useEffect } from "react";
 import { useEffectOnce } from 'react-use';
 import HeaderNav from '../components/headerNav';
 import SideNav from '../components/sideNav';
+import withAuth from '../components/withAuth';
 
 const UserJourney3Layer2 = ({ data }) => {
 
@@ -111,16 +113,16 @@ const UserJourney3Layer2 = ({ data }) => {
                                     </div>
                                 </div>
                                 <div className="dashboard-footer">
-                                    <a href="#" className="btn-submit w-inline-block">
+                                    <Link href="/generate-webpage" className="btn-submit w-inline-block">
                                         <div>Create New Project</div>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <Script src="https://code.jquery.com/jquery-3.6.0.min.js" strategy="beforeInteractive" />
-                <Script src="/js/webflow.js" strategy='afterInteractive' />
+                {/*<Script src="https://code.jquery.com/jquery-3.6.0.min.js" strategy="beforeInteractive" />
+                <Script src="/js/webflow.js" strategy='afterInteractive' />*/}
                 <Script src="/js/script.js" strategy='afterInteractive' />
             </div>
         </div>
@@ -141,4 +143,4 @@ export const getStaticProps = async () => {
     };
 };
 
-export default UserJourney3Layer2;
+export default withAuth(UserJourney3Layer2);

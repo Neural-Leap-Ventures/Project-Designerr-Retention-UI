@@ -12,9 +12,9 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script key="jquery" src="https://code.jquery.com/jquery-3.6.0.min.js" />
+          {/*<script key="jquery" src="https://code.jquery.com/jquery-3.6.0.min.js" />
           <script key="webflow" src="/js/webflow.js" />
-          <script key="custom" src="/js/script.js" />
+          <script key="custom" src="/js/script.js" />*/}
         </body>
       </Html>
     );
